@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        /* Custom styles for the buttons */
+        .custom-file-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .custom-upload-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="font-size: 30px; color: rgb(56, 58, 96); text-align: center;">
+    <h1>File Upload</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt, .pdf, .jpg, .png"  class="custom-file-button">
+        <input type="submit" value="Upload"  class="custom-upload-button">
+    </form>
+    <ul>
+        {% for file in files %}
+        <li>
+            {{ file.filename }}
+            {% if file.filename.endswith('.txt') %}
+            - <a href="/file/{{ file.filename }}" target="_blank">View Content</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
